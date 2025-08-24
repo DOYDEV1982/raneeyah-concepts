@@ -1,0 +1,495 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raneeyah-Concept | Fabrics • Jewelries • Fashion</title>
+  <meta name="description" content="Raneeyah-Concept is a fashion store offering premium fabrics, elegant jewelries, accessories, and bespoke services." />
+  <meta name="theme-color" content="#0b3a2b" />
+  <style>
+    /* ======= THEME (easy to change) ======= */
+    :root{
+      --primary:#0b3a2b;     /* Deep Green */
+      --primary-600:#0d4735;
+      --primary-700:#083024;
+      --accent:#d4af37;      /* Gold accent */
+      --bg:#fffaf0;          /* Cream */
+      --text:#1a1a1a;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --ring:rgba(13,71,53,.25);
+      --shadow:0 10px 25px rgba(0,0,0,.08);
+      --radius:14px;
+      --max:1200px;
+    }
+
+    /* ======= RESET / BASE ======= */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, Noto Sans, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:auto;padding:0 1rem}
+    .btn{
+      display:inline-block;
+      padding:.8rem 1.2rem;
+      border-radius:999px;
+      border:1px solid transparent;
+      background:var(--primary);
+      color:#fff;
+      font-weight:600;
+      box-shadow: var(--shadow);
+      transition:.25s ease;
+    }
+    .btn:hover{transform:translateY(-2px); background:var(--primary-600)}
+    .btn.outline{background:#fff;color:var(--primary);border-color:var(--primary)}
+    .badge{
+      display:inline-flex;align-items:center;gap:.4rem;
+      padding:.25rem .55rem;border-radius:999px;
+      font-size:.75rem;font-weight:700;letter-spacing:.3px;
+      background:#e6f3ee;color:var(--primary);
+    }
+    section{padding:64px 0}
+    h1,h2{line-height:1.2;margin:0 0 .5rem}
+    .grid{display:grid;gap:1rem}
+
+    /* ======= NAV ======= */
+    header{
+      position:sticky;top:0;z-index:50;
+      background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.05)
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding: .8rem 0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:.65rem;font-weight:800;
+      letter-spacing:.5px;color:var(--primary)
+    }
+    .brand .logo{
+      width:40px;height:40px;border-radius:50%;
+      background: radial-gradient(110% 110% at 20% 20%, var(--primary), var(--primary-700));
+      display:grid;place-items:center;color:#fff;font-weight:900;
+      box-shadow: var(--shadow);
+    }
+    .nav ul{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
+    .nav a{padding:.6rem .8rem;border-radius:10px}
+    .nav a:hover{background:#f1f5f9}
+    .nav-actions{display:flex;align-items:center;gap:.6rem}
+    .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer}
+    .hamburger span{width:24px;height:2px;background:#111;border-radius:2px}
+
+    /* Mobile menu */
+    @media (max-width: 900px){
+      .nav ul{display:none;position:absolute;inset:60px 0 auto; background:#fff; box-shadow:var(--shadow); padding:1rem; flex-direction:column}
+      .nav ul.open{display:flex}
+      .hamburger{display:flex}
+    }
+
+    /* ======= HERO ======= */
+    .hero{
+      background:
+        radial-gradient(1000px 600px at 80% -10%, rgba(13,71,53,.10), transparent 60%),
+        radial-gradient(800px 500px at -10% -10%, rgba(13,71,53,.08), transparent 60%),
+        linear-gradient(180deg, #fff, #fffaf2 80%);
+    }
+    .hero-wrap{
+      display:grid;gap:2rem;align-items:center;
+      grid-template-columns: 1.2fr .8fr;
+    }
+    .hero-card{
+      background:var(--card); border-radius:var(--radius); padding:2rem;
+      box-shadow: var(--shadow); border:1px solid #eef2f7;
+    }
+    .kicker{color:var(--primary);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.82rem}
+    .hero h1{font-size:clamp(2rem, 3.2vw + 1rem, 3rem)}
+    .hero p{color:#334155;max-width:60ch}
+    .hero-cta{display:flex;align-items:center;gap:.8rem;margin-top:1rem;flex-wrap:wrap}
+    .hero-art{
+      border-radius:var(--radius);overflow:hidden;position:relative;
+      box-shadow: var(--shadow); min-height:320px; background:#e8f4ef;
+    }
+    .hero-art img{width:100%;height:100%;object-fit:cover}
+
+    @media (max-width: 900px){
+      .hero-wrap{grid-template-columns:1fr}
+      .hero-art{order:-1}
+    }
+
+    /* ======= CATEGORIES ======= */
+    .pill{
+      padding:.4rem .8rem;border:1px solid #e5e7eb;border-radius:999px;
+      background:#fff;display:inline-flex;gap:.5rem;align-items:center
+    }
+    .cat-grid{grid-template-columns: repeat(4, 1fr)}
+    .cat{
+      background:#fff;border:1px solid #eef2f7;border-radius:14px;padding:1.25rem;
+      box-shadow: var(--shadow); display:flex;gap:1rem; align-items:center;
+    }
+    .cat i{
+      width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+      background:linear-gradient(145deg,#e6f3ee,#d9efe7); color:var(--primary); font-weight:900
+    }
+    @media (max-width: 900px){ .cat-grid{grid-template-columns:1fr 1fr} }
+    @media (max-width: 520px){ .cat-grid{grid-template-columns:1fr} }
+
+    /* ======= FEATURED ======= */
+    .cards{grid-template-columns: repeat(3, 1fr)}
+    .card{
+      background:#fff;border:1px solid #eef2f7;border-radius:16px;overflow:hidden;
+      box-shadow: var(--shadow); display:flex;flex-direction:column;
+    }
+    .card .media{aspect-ratio:4/3;background:#e6f3ee}
+    .card .body{padding:1rem}
+    .price{font-weight:800;color:var(--primary)}
+    .meta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.9rem}
+    .actions{display:flex;gap:.6rem;margin-top:.8rem}
+    @media (max-width: 900px){ .cards{grid-template-columns:1fr 1fr} }
+    @media (max-width: 520px){ .cards{grid-template-columns:1fr} }
+
+    /* ======= LOOKBOOK ======= */
+    .masonry{
+      columns: 3 240px; column-gap:1rem;
+    }
+    .masonry img{
+      width:100%; border-radius:12px; margin:0 0 1rem; break-inside:avoid; box-shadow: var(--shadow)
+    }
+
+    /* ======= WHY US ======= */
+    .why{
+      background:linear-gradient(180deg,#fff,#f6f9f7);
+      border:1px solid #eef2f7; border-radius:16px; padding:1.5rem; box-shadow:var(--shadow)
+    }
+    .why ul{margin:0;padding:0 1rem}
+    .why li{margin:.35rem 0}
+
+    /* ======= ABOUT ======= */
+    .about{
+      display:grid;gap:2rem;grid-template-columns:1.1fr .9fr;align-items:center
+    }
+    .punch{
+      border-left:6px solid var(--primary); padding-left:1rem; margin:.75rem 0; color:#334155
+    }
+    .stamp{
+      display:inline-flex;align-items:center;gap:.4rem;
+      border:2px dashed var(--primary); color:var(--primary);
+      padding:.4rem .75rem; border-radius:999px; font-weight:800;
+      background:#f3fbf7;
+    }
+    @media (max-width: 900px){ .about{grid-template-columns:1fr} }
+
+    /* ======= CONTACT ======= */
+    .contact{
+      background:#ffffff;border:1px solid #eef2f7;border-radius:16px;box-shadow:var(--shadow);
+      padding:1.5rem;
+    }
+    .form{display:grid;gap:1rem;grid-template-columns:1fr 1fr}
+    .form .field{display:flex;flex-direction:column;gap:.35rem}
+    .form input,.form textarea, select{
+      padding:.85rem 1rem;border:1px solid #d1d5db;border-radius:12px;background:#fff;
+      outline:none; transition:.2s ease; font-size:1rem;
+    }
+    .form input:focus,.form textarea:focus, select:focus{
+      border-color:var(--primary); box-shadow:0 0 0 4px var(--ring);
+    }
+    .form textarea{min-height:140px;grid-column:1/-1;resize:vertical}
+    .form .full{grid-column:1/-1}
+    @media (max-width: 700px){ .form{grid-template-columns:1fr} }
+
+    /* ======= FOOTER ======= */
+    footer{background:var(--primary-700);color:#e6f3ee}
+    .foot{
+      display:grid;gap:1.25rem;grid-template-columns:2fr 1fr 1fr 1.2fr;
+      padding:2rem 0;
+    }
+    .foot h4{margin:.2rem 0 .6rem}
+    .foot a{color:#e6f3ee}
+    .foot a:hover{text-decoration:underline}
+    .copyright{
+      border-top:1px solid rgba(255,255,255,.12); padding:1rem 0; color:#d9efe7; font-size:.95rem
+    }
+    @media (max-width: 900px){ .foot{grid-template-columns:1fr 1fr} }
+    @media (max-width: 560px){ .foot{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+  <!-- ======= NAV ======= -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Raneeyah-Concept Home">
+        <span class="logo">R</span>
+        <span>Raneeyah-Concept</span>
+      </a>
+
+      <nav>
+        <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </div>
+        <ul id="menu">
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#lookbook">Lookbook</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="nav-actions"><a class="btn outline" href="#contact">Book Styling</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======= HERO ======= -->
+  <section id="home" class="hero">
+    <div class="container hero-wrap">
+      <div class="hero-card">
+        <div class="kicker">Timeless • Elegant • You</div>
+        <h1>Premium <span style="color:var(--primary)">Fabrics</span>, Fine <span style="color:var(--accent)">Jewelries</span> & Bespoke Fashion</h1>
+        <p>At Raneeyah-Concept, we curate the finest textiles and accessories, blending craftsmanship with modern style. From Ankara to luxury silks, from minimal pieces to statement jewelries—discover your signature look.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#shop">Shop Collections</a>
+          <a class="btn outline" href="#lookbook">View Lookbook</a>
+          <span class="badge" title="Free delivery over $100">✦ Free Delivery</span>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <!-- Replace with your images -->
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop" alt="Fashion fabrics and jewelry flatlay" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= CATEGORIES ======= -->
+  <section id="shop">
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+        <h2>Shop by Category</h2>
+        <div class="pill">🔎 <select aria-label="Quick category" id="quick-cat">
+          <option value="all" selected>All Items</option>
+          <option value="fabrics">Fabrics</option>
+          <option value="jewelries">Jewelries</option>
+          <option value="accessories">Accessories</option>
+          <option value="bespoke">Bespoke</option>
+        </select></div>
+      </div>
+
+      <div class="grid cat-grid" role="list">
+        <div class="cat" role="listitem"><i>🧵</i><div><strong>Fabrics</strong><div class="muted">Ankara, Lace, Silk, Chiffon</div></div></div>
+        <div class="cat" role="listitem"><i>💍</i><div><strong>Jewelries</strong><div class="muted">Minimal & Statement Pieces</div></div></div>
+        <div class="cat" role="listitem"><i>👜</i><div><strong>Accessories</strong><div class="muted">Scarves, Belts, Headpieces</div></div></div>
+        <div class="cat" role="listitem"><i>✂️</i><div><strong>Bespoke</strong><div class="muted">Custom Tailoring & Styling</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= FEATURED PRODUCTS ======= -->
+  <section>
+    <div class="container">
+      <h2 style="margin-bottom:1rem">Featured Picks</h2>
+      <div class="grid cards" id="product-grid">
+        <!-- Example product card -->
+        <article class="card" data-cat="fabrics">
+          <div class="media">
+            <img alt="Luxury Ankara fabric" src="https://images.unsplash.com/photo-1619470878135-f0a8cfde9ef6?q=80&w=1200&auto=format&fit=crop">
+          </div>
+          <div class="body">
+            <div class="meta"><span>Luxury Ankara</span><span class="badge">New</span></div>
+            <h3 style="margin:.35rem 0">Royal Ankara – Blue/Gold</h3>
+            <div class="price">$45 / yard</div>
+            <div class="actions"><a class="btn" href="#contact">Order</a><a class="btn outline" href="#contact">Enquire</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-cat="jewelries">
+          <div class="media">
+            <img alt="Gold-plated earrings" src="https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?q=80&w=1200&auto=format&fit=crop">
+          </div>
+          <div class="body">
+            <div class="meta"><span>Statement Earrings</span><span class="badge">Bestseller</span></div>
+            <h3 style="margin:.35rem 0">Aurora Drops – Gold Plated</h3>
+            <div class="price">$65</div>
+            <div class="actions"><a class="btn" href="#contact">Order</a><a class="btn outline" href="#contact">Enquire</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-cat="accessories">
+          <div class="media">
+            <img alt="Silk scarf" src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=1200&auto=format&fit=crop">
+          </div>
+          <div class="body">
+            <div class="meta"><span>Silk Scarf</span><span class="badge">Limited</span></div>
+            <h3 style="margin:.35rem 0">Verde Silk Scarf</h3>
+            <div class="price">$29</div>
+            <div class="actions"><a class="btn" href="#contact">Order</a><a class="btn outline" href="#contact">Enquire</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= LOOKBOOK ======= -->
+  <section id="lookbook">
+    <div class="container">
+      <h2 style="margin-bottom:1rem">Lookbook</h2>
+      <div class="masonry" aria-label="Lookbook gallery">
+        <img src="https://images.unsplash.com/photo-1516641395110-61e89ef2a393?q=80&w=900&auto=format&fit=crop" alt="Model in Ankara gown" />
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=900&auto=format&fit=crop" alt="Jewelry closeup" />
+        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=900&auto=format&fit=crop" alt="Tailoring studio" />
+        <img src="https://images.unsplash.com/photo-1520975693416-35a76f9ff65e?q=80&w=900&auto=format&fit=crop" alt="Silk fabric drape" />
+        <img src="https://images.unsplash.com/photo-1520975405074-2e0c0f0a1273?q=80&w=900&auto=format&fit=crop" alt="Accessories flatlay" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= WHY CHOOSE US ======= -->
+  <section>
+    <div class="container">
+      <div class="why">
+        <h2>Why Raneeyah-Concept?</h2>
+        <ul>
+          <li>✔️ Curated, high-quality fabrics from trusted mills</li>
+          <li>✔️ Elegant jewelries—from minimal to statement</li>
+          <li>✔️ Bespoke tailoring and personal styling</li>
+          <li>✔️ Nationwide shipping and easy enquiries</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= ABOUT ======= -->
+  <section id="about">
+    <div class="container about">
+      <div>
+        <span class="stamp">Since 2017</span>
+        <h2>About Raneeyah-Concept</h2>
+        <p class="punch">We’re a fashion house committed to helping you look effortlessly refined—blending bold African heritage with modern silhouettes.</p>
+        <p>From everyday elegance to special occasions, our team sources premium textiles, crafts tailored fits, and curates accessories to finish your look. Visit us, book a styling session, or order online—we’ll handle the details.</p>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem">
+          <a class="btn" href="#contact">Book a Fitting</a>
+          <a class="btn outline" href="#lookbook">Explore Lookbook</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="https://unsplash.com/photos/fashion-designer-works-on-patterns-in-her-studio-ktFgitFPrqw" alt="Tailor measuring client" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= CONTACT ======= -->
+  <section id="contact">
+    <div class="container">
+      <h2 style="margin-bottom:1rem">Contact & Orders</h2>
+      <div class="grid" style="grid-template-columns: 1.2fr .8fr; align-items:start">
+        <form class="contact form" id="order-form" aria-label="Order/Enquiry form">
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field full">
+            <label for="type">What are you interested in?</label>
+            <select id="type" name="type">
+              <option value="fabrics">Fabrics</option>
+              <option value="jewelries">Jewelries</option>
+              <option value="accessories">Accessories</option>
+              <option value="bespoke">Bespoke Tailoring</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="msg">Message / Order Details</label>
+            <textarea id="msg" name="msg" placeholder="Tell us color, size, quantity or event date…"></textarea>
+          </div>
+          <button class="btn full" type="submit">Send Enquiry</button>
+          <p id="form-status" class="muted" style="margin:0"></p>
+        </form>
+
+        <div class="contact">
+          <h3>Visit Us</h3>
+          <p><strong>Raneeyah-Concept</strong><br/> 123 Elegance Avenue, Lagos, NG</p>
+          <p><strong>Hours:</strong> Mon–Sat: 9am–6pm</p>
+          <p><strong>Phone:</strong> +234 800 000 0000</p>
+          <p><strong>Email:</strong> hello@raneeyahconcept.com</p>
+          <div style="border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;margin-top:.5rem">
+            <!-- Replace with real map embed -->
+            <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?q=80&w=1400&auto=format&fit=crop" alt="Storefront placeholder" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= FOOTER ======= -->
+  <footer>
+    <div class="container foot">
+      <div>
+        <div class="brand" style="color:#fff"><span class="logo">R</span> Raneeyah-Concept</div>
+        <p style="color:#d9efe7;max-width:48ch">Premium fashion essentials—fabrics, jewelries, accessories—and bespoke services crafted for you.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="#shop">Fabrics</a><br/>
+        <a href="#shop">Jewelries</a><br/>
+        <a href="#shop">Accessories</a><br/>
+        <a href="#shop">Bespoke</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#about">About</a><br/>
+        <a href="#lookbook">Lookbook</a><br/>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="#" aria-label="Instagram">Instagram</a><br/>
+        <a href="#" aria-label="Facebook">Facebook</a><br/>
+        <a href="#" aria-label="TikTok">TikTok</a>
+      </div>
+    </div>
+    <div class="container copyright">© <span id="year"></span> Raneeyah-Concept. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    hamburger?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Quick category filter
+    const select = document.getElementById('quick-cat');
+    select?.addEventListener('change', (e) => {
+      const v = e.target.value;
+      document.querySelectorAll('#product-grid [data-cat]').forEach(card=>{
+        card.style.display = (v === 'all' || card.dataset.cat === v) ? '' : 'none';
+      });
+    });
+
+    // Fake form handler (replace with real backend later)
+    const form = document.getElementById('order-form');
+    const statusEl = document.getElementById('form-status');
+    form?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      statusEl.textContent = 'Sending…';
+      setTimeout(()=>{
+        statusEl.textContent = '✅ Thanks, ' + (data.name || 'friend') + '! We will reply shortly.';
+        form.reset();
+      }, 700);
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+  
